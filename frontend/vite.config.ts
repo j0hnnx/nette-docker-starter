@@ -7,6 +7,13 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',   // needed for Docker
     port: 5173,
+    watch: {
+      usePolling: true,    // ← needed for Docker on Windows
+    },
+    hmr: {
+      host: 'localhost',   // ← tells browser where to connect for HMR
+      port: 5173,
+    },
     proxy: {
       '/api': {
         target: 'http://php:80',  // points to your Nette container

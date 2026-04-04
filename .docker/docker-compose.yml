@@ -33,6 +33,8 @@ services:
       MYSQL_USER: nette
       MYSQL_PASSWORD: nette
       MYSQL_DATABASE: nette
+    volumes:
+      - ./build/db/migrations:/docker-entrypoint-initdb.d
 
   adminer:
     image: adminer
