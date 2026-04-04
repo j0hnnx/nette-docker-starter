@@ -1,0 +1,19 @@
+# Nette
+/temp/*
+!/temp/.gitkeep
+/log/*
+!/log/.gitkeep
+
+# Composer
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local env
+.env.local

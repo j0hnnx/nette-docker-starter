@@ -1,0 +1,33 @@
+services:
+  php:
+    container_name: nette_php
+    image: nette_php
+    build: build/php
+    volumes:
+      - ../:/var/www/html
+    ports:
+      - 80:80
+    environment:
+      - NETTE_DEBUG=1
+    links:
+      - db
+
+  db:
+    container_name: nette_db
+    image: nette_db
+    build: build/db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: nette
+      MYSQL_PASSWORD: nette
+      MYSQL_DATABASE: nette
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
