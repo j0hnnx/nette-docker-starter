@@ -12,6 +12,16 @@ services:
     links:
       - db
 
+  node:
+    container_name: nette_node
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ../frontend:/app
+    ports:
+      - 5173:5173
+    command: sh -c "npm install && npm run dev"
+
   db:
     container_name: nette_db
     image: nette_db

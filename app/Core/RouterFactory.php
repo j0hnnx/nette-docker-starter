@@ -13,7 +13,8 @@ final class RouterFactory
 	public static function createRouter(): RouteList
 	{
 		$router = new RouteList;
-		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
+        $router->addRoute('/api/<action>[/<id>]', 'Api:<action>');
+        $router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
 		return $router;
 	}
 }
