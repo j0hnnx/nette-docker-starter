@@ -3,6 +3,12 @@
 # Allow access to all resources by default
 Require all granted
 
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "http://localhost:5173"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
 # Disable directory listing for security reasons
 <IfModule mod_autoindex.c>
 	Options -Indexes
@@ -14,6 +20,10 @@ Require all granted
 
 	# Uncomment the next line if you want to set the base URL for rewrites
 	# RewriteBase /
+
+    # Handle OPTIONS preflight ← fixed version
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule .* - [R=200,L]
 
 	# Permit requests to the '.well-known' directory (used for SSL verification and more)
 	RewriteRule ^\.well-known/ - [L]

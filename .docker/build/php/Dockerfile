@@ -12,6 +12,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN docker-php-ext-enable mysqli pdo pdo_mysql
 
 RUN a2enmod rewrite
+RUN a2enmod headers
 
 RUN mkdir -p /var/www/html/temp /var/www/html/log \
     && chown -R www-data:www-data /var/www/html/temp /var/www/html/log \
