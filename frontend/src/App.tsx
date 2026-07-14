@@ -1,21 +1,20 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from './pages/Home';
+import Todo from './pages/Todo';
+import SideBar from "./components/SideBar";
 
-function App() {
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    fetch('/api/default')
-        .then(res => res.json())
-        .then(data => setMessage(data.message))
-  }, [])
-
-  return (
-      <div>
-        <h1>Nette + React</h1>
-        <p>{message || 'Loading...'}</p>
-      </div>
-  )
+export default function App() {
+    return(
+        <BrowserRouter>
+            <div className="d-flex">
+                <SideBar/>
+                <main className="flex-grow-1 p-4">
+                    <Routes>
+                        <Route path="/" element={<Home />}/>
+                        <Route path="/todo" element={<Todo />}/>
+                    </Routes>
+                </main>
+            </div>
+        </BrowserRouter>
+    )
 }
-
-export default App
